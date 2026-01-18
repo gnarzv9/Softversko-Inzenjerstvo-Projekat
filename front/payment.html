@@ -1,0 +1,109 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insomnia Shop Payment</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(#0e1621, #1b2838);
+            color: white;
+        }
+
+        .navbar {
+            background-color: #171a21;
+            padding: 15px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            border-bottom: 2px solid #066fa1;
+        }
+
+        .payment-container {
+            max-width: 400px;
+            margin: 50px auto;
+            background-color: #1b2838;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"], input[type="number"], input[type="month"] {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+        }
+
+        #pay-btn {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            font-size: 18px;
+            background-color: #66c0f4;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        #pay-btn:hover {
+            background-color: #077285;
+            transform: scale(1.05);
+        }
+
+        label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">Insomnia Shop Payment</div>
+
+    <div class="payment-container">
+        <h2>Enter Payment Details</h2>
+
+        <form id="payment-form">
+            <label for="card-name">Cardholder Name</label>
+            <input type="text" id="card-name" placeholder="Ivan Ivanović" required>
+
+            <label for="card-number">Card Number</label>
+            <input type="text" id="card-number" placeholder="1234 1234 1234 1234" maxlength="16" required>
+
+            <label for="expiry-date">Expiry Date</label>
+            <input type="month" id="expiry-date" required>
+
+            <label for="cvv">CVV</label>
+            <input type="number" id="cvv" placeholder="123" maxlength="3" required>
+
+            <button type="submit" id="pay-btn">Pay Now</button>
+        </form>
+    </div>
+
+    <script>
+        const paymentForm = document.getElementById("payment-form");
+
+        paymentForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById("card-name").value;
+            const number = document.getElementById("card-number").value;
+            const expiry = document.getElementById("expiry-date").value;
+            const cvv = document.getElementById("cvv").value;
+
+            alert(`Payment successful!\nThank you, ${name}`);
+
+            localStorage.removeItem("cart");
+
+            window.location.href = "index.html";
+        });
+    </script>
+</body>
+</html>

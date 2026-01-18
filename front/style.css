@@ -1,0 +1,141 @@
+body {
+    margin: 0;
+    background: linear-gradient(#0e1621, #1b2838);
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    background-color: #171a21;
+    padding: 15px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    border-bottom: 2px solid #066fa1;
+}
+
+#container {
+    display: flex;
+    justify-content: space-between; 
+    align-items: flex-start;
+    padding: 20px;
+    width: 100%; 
+    box-sizing: border-box;
+}
+
+.games-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    flex-grow: 1; /* take remaining space */
+    justify-content: flex-start; /* align games to the left */
+}
+
+.game-card {
+    background-color: #1b2838;
+    width: 220px;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.game-card {
+    background-color: #1b2838;
+    width: 220px;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.7);
+}
+
+/* Game image */
+.game-card img {
+    width: 220px;
+    height: 300px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+button {
+    width: 67px;
+    padding: 8px 12px;
+    background-color: #66c0f4;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #077285;
+    color: white;
+    border-radius: 30px;
+    transform: scale(1.05);
+}
+
+#cart {
+    background-color: #171a21;
+    padding: 15px;
+    color: white;
+    min-width: 300px;
+    max-height: 80vh;
+    overflow-y: auto;
+    border-radius: 5px;
+    flex-shrink: 0; /* do not shrink */
+    box-shadow: 0 0 15px rgba(0,0,0,0.7);
+}
+
+/* Cart header */
+#cart-header {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+    border-bottom: 1px solid #066fa1;
+    padding-bottom: 5px;
+}
+
+/* Cart items */
+#cart-items div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    padding: 5px;
+    background-color: #1b2838;
+    border-radius: 5px;
+}
+#cart-items button {
+    padding: 4px 8px;
+    font-size: 14px;
+    background-color: #c74b50;
+    border-radius: 5px;
+}
+#cart-items button:hover {
+    background-color: #a33b3f;
+    transform: scale(1.1);
+}
+
+#checkout-btn {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #66c0f4;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#checkout-btn:hover {
+    background-color: #077285;
+    transform: scale(1.05);
+}
