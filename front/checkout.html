@@ -93,7 +93,6 @@
         const checkoutTotal = document.getElementById("checkout-total");
         const placeOrderBtn = document.getElementById("place-order-btn");
 
-        // Load cart from localStorage
         const cart = JSON.parse(localStorage.getItem("cart") || "{}");
         const items = Object.values(cart);
 

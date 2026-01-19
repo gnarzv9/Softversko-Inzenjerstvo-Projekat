@@ -4,7 +4,6 @@ const checkoutBtn = document.getElementById("checkout-btn");
 
 const cart = {};
 
-// Fetch games from API
 fetch("http://localhost:5000/api/games")
   .then(res => res.json())
   .then(games => {
@@ -24,7 +23,6 @@ fetch("http://localhost:5000/api/games")
     });
   });
 
-// Add game to cart
 function addToCart(game) {
   if (cart[game.id]) {
     cart[game.id].quantity += 1;
@@ -34,7 +32,6 @@ function addToCart(game) {
   renderCart();
 }
 
-// Remove game from cart
 function removeFromCart(gameId) {
   if (cart[gameId]) {
     cart[gameId].quantity -= 1;
@@ -43,18 +40,16 @@ function removeFromCart(gameId) {
   }
 }
 
-// Render cart items and toggle checkout button
 function renderCart() {
   cartItemsContainer.innerHTML = "";
 
   const items = Object.values(cart);
 
   if (items.length === 0) {
-    checkoutBtn.style.display = "none"; // hide button if cart empty
+    checkoutBtn.style.display = "none";
     return;
   }
 
-  // Show checkout button if cart has items
   checkoutBtn.style.display = "block";
 
   items.forEach(item => {
@@ -71,8 +66,40 @@ function renderCart() {
   });
 }
 
-// Checkout button click
 checkoutBtn.addEventListener("click", () => {
-  localStorage.setItem("cart", JSON.stringify(cart)); // save cart
-  window.location.href = "checkout.html"; // go to checkout page
+  localStorage.setItem("cart", JSON.stringify(cart)); 
+  window.location.href = "checkout.html"; 
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const logRegDiv = document.querySelector(".logreg");
+
+    if (!logRegDiv) return;
+
+    const loginBtn = document.getElementById("loginPageBtn");
+    const registerBtn = document.getElementById("registerPageBtn");
+
+    let currentUser = JSON.parse(localStorage.getItem("user"));
+
+    if (currentUser) {
+        logRegDiv.innerHTML = `
+            <span>Welcome, ${currentUser.username}</span>
+            <button id="logoutBtn">Logout</button>
+        `;
+        document.getElementById("logoutBtn").addEventListener("click", () => {
+            localStorage.removeItem("user");
+            location.reload();
+        });
+    } else {
+        if (loginBtn)
+            loginBtn.addEventListener("click", () => {
+                window.location.href = "login.html";
+            });
+
+        if (registerBtn)
+            registerBtn.addEventListener("click", () => {
+                window.location.href = "register.html";
+            });
+    }
+
 });

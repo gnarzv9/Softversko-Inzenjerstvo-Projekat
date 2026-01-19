@@ -1,4 +1,6 @@
 using InsomniaShop.Models;
+using System.Security.Cryptography;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,9 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 app.UseCors("AllowAll");
 
+var users = new List<User>();
+int userIdCounter = 1;
+
 var games = new List<Game>
 {
     new Game { Id = 1, Name = "Hytale", Price = 29.99, ImageUrl = "https://cdn.arcanitegames.ca/18614a82e6bad2075066d91fa66cb2f5_hero.jpg" },
@@ -22,6 +27,42 @@ var games = new List<Game>
     new Game { Id = 5, Name = "Acod's Mod", Price = 1337.69, ImageUrl = "https://i.imgur.com/slaK78G.png" }
 };
 
+string HashPassword(string password)
+{
+    using var sha = SHA256.Create();
+    var bytes = Encoding.UTF8.GetBytes(password);
+    var hash = sha.ComputeHash(bytes);
+    return Convert.ToBase64String(hash);
+}
+
 app.MapGet("/api/games", () => games);
+
+
+
+app.MapPost("/api/auth/register", (UserDto userDto) =>
+{
+    if (users.Any(u => u.Username == userDto.Username))
+        return Results.BadRequest("User may exist");
+
+    users.Add(new User
+    {
+        Id = userIdCounter++,
+        Username = userDto.Username,
+        PasswordHash = HashPassword(userDto.Password)
+    });
+
+    return Results.Ok("Registered successfully");
+});
+app.MapPost("/api/auth/login", (UserDto userDto) =>
+{
+    var hash = HashPassword(userDto.Password);
+    var user = users.FirstOrDefault(u =>
+        u.Username == userDto.Username && u.PasswordHash == hash);
+
+    if (user == null)
+        return Results.Unauthorized();
+
+    return Results.Ok(new { user.Id, user.Username });
+});
 
 app.Run();

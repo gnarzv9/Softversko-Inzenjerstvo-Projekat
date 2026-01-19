@@ -1,0 +1,53 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Insomnia Shop</title>
+    <style>
+        body {
+            background: linear-gradient(#0e1621, #1b2838);
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .login-container {
+            background-color: #171a21;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        input {
+            padding: 10px;
+            margin: 10px 0;
+            width: 200px;
+            border-radius: 5px;
+            border: none;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #66c0f4;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background-color: #077285;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <input id="username" type="text" placeholder="Username"><br>
+        <input id="password" type="password" placeholder="Password"><br>
+        <button id="loginBtn">Login</button>
+        <p id="loginMessage"></p>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html>
