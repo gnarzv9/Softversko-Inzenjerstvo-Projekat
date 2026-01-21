@@ -22,6 +22,7 @@ namespace InsomniaShop.SeleniumTests
         {
             driver!.Navigate().GoToUrl("http://127.0.0.1:5500/front/index.html");
             Assert.IsNotNull(driver.Title);
+
         }
 
         [Test]
@@ -46,6 +47,8 @@ namespace InsomniaShop.SeleniumTests
             var cart = wait.Until(d => d.FindElement(By.Id("cart-items")));
             Assert.IsNotNull(cart);
         }
+
+        
 
         [TearDown]
         public void TearDown()

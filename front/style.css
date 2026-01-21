@@ -90,7 +90,6 @@ button:hover {
     box-shadow: 0 0 15px rgba(0,0,0,0.7);
 }
 
-/* Cart header */
 #cart-header {
     font-size: 24px;
     font-weight: bold;
@@ -100,7 +99,6 @@ button:hover {
     padding-bottom: 5px;
 }
 
-/* Cart items */
 #cart-items div {
     display: flex;
     justify-content: space-between;
